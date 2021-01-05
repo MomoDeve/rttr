@@ -395,8 +395,21 @@ function( set_compiler_warnings target)
     set(WARNINGS "-Werror"
                  "-Wall")
   elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(WARNINGS "-Werror"
-                 "-Wall")
+    set(WARNINGS #"-Werror"
+                 "-Wall"
+                 #"-Wno-c++98-compat"
+                 #"-Wno-c++98-compat-pedantic"
+                 #"-Wno-redundant-parens"
+                 #"-Wno-documentation"
+                 #"-Wno-sign-conversion"
+                 #"-Wno-unused-parameter"
+                 #"-Wno-extra-semi"
+                 #"-Wno-microsoft-unqualified-friend"
+                 #"-Wno-double-promotion"
+                 #"-Wno-implicit-fallthrough"
+                 #"-Wno-exit-time-destructors"
+                 #"-Wno-zero-as-null-pointer-constant"
+                 )
   elseif(MSVC)
     set(WARNINGS "/WX"
                  "/W4")
