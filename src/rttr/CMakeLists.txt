@@ -51,7 +51,7 @@ if (${BUILD_RTTR_DYNAMIC})
     set_target_properties(rttr_core PROPERTIES
                           VERSION ${RTTR_VERSION} SOVERSION ${RTTR_VERSION}
                           EXPORT_NAME Core
-                          DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX}
+                          # DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX}
                           CXX_STANDARD ${MAX_CXX_STANDARD}
                           CXX_VISIBILITY_PRESET hidden
                           VISIBILITY_INLINES_HIDDEN 1)
@@ -93,7 +93,8 @@ if (BUILD_STATIC)
                           VERSION ${RTTR_VERSION} SOVERSION ${RTTR_VERSION}
                           EXPORT_NAME Core_Lib
                           CXX_STANDARD ${MAX_CXX_STANDARD}
-                          DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX})
+                          # DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX}
+                          )
                           
     target_link_libraries(rttr_core_lib PRIVATE ${CMAKE_DL_LIBS})
     
@@ -145,7 +146,7 @@ if (BUILD_WITH_STATIC_RUNTIME_LIBS)
                           VERSION ${RTTR_VERSION} SOVERSION ${RTTR_VERSION}
                           EXPORT_NAME Core_STL
                           CXX_STANDARD ${MAX_CXX_STANDARD}
-                          DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX}
+                          # DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX}
                           CXX_VISIBILITY_PRESET hidden
                           VISIBILITY_INLINES_HIDDEN 1)
 
@@ -189,7 +190,8 @@ if (BUILD_WITH_STATIC_RUNTIME_LIBS)
                               VERSION ${RTTR_VERSION} SOVERSION ${RTTR_VERSION}
                               EXPORT_NAME Core_Lib_STL
                               CXX_STANDARD ${MAX_CXX_STANDARD}
-                              DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX})
+                              # DEBUG_POSTFIX ${RTTR_DEBUG_POSTFIX}
+                              )
                               
         target_link_libraries(rttr_core_lib_s PRIVATE ${CMAKE_DL_LIBS})
             
