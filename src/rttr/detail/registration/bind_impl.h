@@ -520,6 +520,7 @@ class registration::bind<detail::prop, Class_Type, A1, A2, acc_level, Visitor_Li
         template<typename... Args>
         registration_derived_t<Class_Type> operator()(Args&&... args)
         {
+            using namespace detail;
             m_prop = create_custom_property(m_name,
                                             m_getter, m_setter,
                                             std::move(get_metadata(std::forward<Args>(args)...)), std::forward<Args>(args)...);
