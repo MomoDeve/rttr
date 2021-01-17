@@ -46,19 +46,22 @@ RTTR_INLINE instance::instance() RTTR_NOEXCEPT
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-RTTR_INLINE instance::instance(const variant& var) RTTR_NOEXCEPT
-:   m_data_container(var.get_data_address_container())
-{
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
 RTTR_INLINE instance::instance(const instance& other) RTTR_NOEXCEPT
 :   m_data_container(other.m_data_container)
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+RTTR_INLINE instance::instance(const variant& var) RTTR_NOEXCEPT
+    :   m_data_container(detail::data_address_container{
+                     var.get_type(), var.get_type().get_wrapped_type(),
+                     var.get_data_address_container().m_data_address, var.get_data_address_container().m_data_address_wrapped_type })
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 
 template<typename T, typename Tp>
 RTTR_INLINE instance::instance(T& data) RTTR_NOEXCEPT
