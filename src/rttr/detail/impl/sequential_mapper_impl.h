@@ -67,28 +67,10 @@ struct sequential_container_mapper_wrapper : iterator_wrapper_base<Tp>
         return *reinterpret_cast<ConstType*>(container);
     }
 
-    template<typename..., typename ReturnType = decltype(base_class::get_data(std::declval<itr_t>())),
-             enable_if_t<std::is_reference<ReturnType>::value && !std::is_array<remove_reference_t<ReturnType>>::value, int> = 0>
     static variant get_data(const iterator_data& itr)
     {
         auto& it = itr_wrapper::get_iterator(itr);
         return variant(std::ref(base_class::get_data(it)));
-    }
-
-    template<typename..., typename ReturnType = decltype(base_class::get_data(std::declval<itr_t>())),
-             enable_if_t<std::is_reference<ReturnType>::value && std::is_array<remove_reference_t<ReturnType>>::value, int> = 0>
-    static variant get_data(const iterator_data& itr)
-    {
-        auto& it = itr_wrapper::get_iterator(itr);
-        return variant(std::ref(base_class::get_data(it)));
-    }
-
-    template<typename..., typename ReturnType = decltype(base_class::get_data(std::declval<itr_t>())),
-             enable_if_t<!std::is_reference<ReturnType>::value, int> = 0>
-    static variant get_data(const iterator_data& itr)
-    {
-        auto& it = itr_wrapper::get_iterator(itr);
-        return variant(base_class::get_data(it));
     }
 
     static void begin(void* container, iterator_data& itr)
